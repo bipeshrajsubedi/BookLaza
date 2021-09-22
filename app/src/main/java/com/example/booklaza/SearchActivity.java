@@ -144,13 +144,15 @@ public class SearchActivity extends AppCompatActivity {
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
+                    progressBar.setVisibility(View.GONE);
                     Toast.makeText(SearchActivity.this, "No Data Found" + e, Toast.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(SearchActivity.this, "Error: " + error, Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.GONE);
+                Toast.makeText(SearchActivity.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
         // adding json obj request in request queue
