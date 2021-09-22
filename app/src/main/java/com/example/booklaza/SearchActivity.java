@@ -100,6 +100,7 @@ public class SearchActivity extends AppCompatActivity {
             public void onResponse(JSONObject response) {
 
                 try {
+                    progressBar.setVisibility(View.VISIBLE);
                     JSONArray itemsArray = response.getJSONArray("items");
                     JSONArray authorsArray = null;
                     String categories="";
@@ -145,14 +146,14 @@ public class SearchActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                     progressBar.setVisibility(View.GONE);
-                    Toast.makeText(SearchActivity.this, "No Data Found" + e, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SearchActivity.this, "There is a problem fetching data.", Toast.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 progressBar.setVisibility(View.GONE);
-                Toast.makeText(SearchActivity.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(SearchActivity.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
         // adding json obj request in request queue
